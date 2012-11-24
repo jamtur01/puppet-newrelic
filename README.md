@@ -15,7 +15,7 @@ Requirements
 * `newrelic_api` gem
 * You will need to enable API access to your New Relic account. To do this, go to
 Account settings (upper right corner of the New Relic site), and then
-click on API + web integration. Select API access, and enable it.
+click on Integrations => Data Sharing. Select API access, and enable it.
 
 Installation & Usage
 --------------------
@@ -42,9 +42,23 @@ Installation & Usage
 3.  Update the `api_key` variable in the `newrelic.yaml` file with
     your New Relic API key.
 
-4.  Copy `newrelic.yaml` to `/etc/puppet`.
+        ---
+        :api_key: 'abc123'
 
-5.  Enable pluginsync and reports on your master and clients in `puppet.conf`
+4.  Add a list of your hosts to newrelic.yaml and match each host to the
+    New Relic application deployed on it. Currently this is ugly and
+    only supports one application per host. Anyone with ideas on how to do
+    it better is welcomed. :)
+
+        ---
+        :api_key: 'c5f20bcc943170f283d610f8605ec8059640c8f167cbefe'
+        :hosts:
+          - {host: 'hostname', key: 'key'}
+          - {host: 'hostname2', key: 'key'}
+
+5.  Copy `newrelic.yaml` to `/etc/puppet`.
+
+6.  Enable pluginsync and reports on your master and clients in `puppet.conf`
 
         [master]
         report = true
@@ -54,7 +68,7 @@ Installation & Usage
         report = true
         pluginsync = true
 
-6.  Run the Puppet client and sync the report as a plugin
+7.  Run the Puppet client and sync the report as a plugin
 
 Author
 ------

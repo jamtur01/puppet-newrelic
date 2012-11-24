@@ -16,10 +16,13 @@ Puppet::Reports.register_report(:newrelic) do
   DESC
 
   def process
-    if self.kind == 'apply'
+    app_id = CONFIG[:hosts].detect {|h| h["host"] == self.host }['key']
+    if app_id == nil
+      Puppet.info("Unable to match #{self.host} to a specific NewRelic application - check newrelic.yaml")
+      exit
+    elsif self.kind == 'apply'
       NewRelicApi.api_key = CONFIG[:api_key]
-      # Need a way to declare what application is being deployed?
-      NewRelicApi::Deployment.create :app_name => "!App that was deployed!", :description => "Puppet run #{self.configuration_version} on #{self.host} at #{self.time}", :user => "Puppet"
+      NewRelicApi::Deployment.create :app_id => "#{app_id}", :description => "Puppet run #{self.configuration_version} on #{self.host} at #{self.time}", :user => "Puppet"
     else
       Puppet.info("Not reporting deployment of Puppet run of type: #{self.kind}")
     end
