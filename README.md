@@ -53,8 +53,12 @@ Installation & Usage
         ---
         :api_key: 'c5f20bcc943170f283d610f8605ec8059640c8f167cbefe'
         :hosts:
-          - {host: 'hostname', key: 'key'}
-          - {host: 'hostname2', key: 'key'}
+          - {host: 'hostname1', key: '123456'}
+          - {host: 'hostname2', key: '123456'}
+
+    You can get the Application ID key from the New Relic url, for
+    example: https://rpm.newrelic.com/accounts/17710/applications/56658.
+    Where `56658` is the Application ID key. 
 
 5.  Copy `newrelic.yaml` to `/etc/puppet`.
 

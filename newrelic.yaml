@@ -1,5 +1,5 @@
 ---
 :api_key: 'abc123'
 :hosts:
-  - {host: 'hostname', key: 'key'}
-  - {host: 'hostname2', key: 'key'}
+  - {host: 'hostname1', key: '123456'}
+  - {host: 'hostname2', key: '123456'}
