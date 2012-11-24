@@ -6,7 +6,7 @@ This module contains two methods of notifying New Relic of a successful
 application deployment:
 
 * A Puppet type called `newrelic_notify` that will send deployment
-  notifications to New Relic.
+  notifications to [NewRelic](http://newrelic.com) via the [Deployment API](http://newrelic.github.com/newrelic_api/NewRelicApi/Deployment.html).
 
 * A Puppet report processor for sending deployment events to
   [NewRelic](http://newrelic.com) via the [Deployment API](http://newrelic.github.com/newrelic_api/NewRelicApi/Deployment.html).
