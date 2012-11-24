@@ -47,7 +47,7 @@ applications declare the `newrelic` class.
         [agent]
         pluginsync = true
 
-2.  Run the Puppet client and sync the report as a plugin
+2.  Run the Puppet client and sync the type and provider as a plugin
 
 3.  You can then use the type and provider like so:
 
