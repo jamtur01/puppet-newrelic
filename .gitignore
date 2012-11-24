@@ -1,0 +1,7 @@
+.bundle
+.config
+pkg
+tmp
+.yardoc
+_yardoc
+doc/
