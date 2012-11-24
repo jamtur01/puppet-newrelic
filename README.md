@@ -51,7 +51,7 @@ Installation & Usage
     it better is welcomed. :)
 
         ---
-        :api_key: 'c5f20bcc943170f283d610f8605ec8059640c8f167cbefe'
+        :api_key: 'abc123'
         :hosts:
           - {host: 'hostname1', key: '123456'}
           - {host: 'hostname2', key: '123456'}
