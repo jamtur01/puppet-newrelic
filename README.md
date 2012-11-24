@@ -1,15 +1,17 @@
-puppet-newrelic
-=============
+# puppet-newrelic
 
-Description
------------
+## Description
 
-A Puppet report handler for sending deployment events to
-[NewRelic](http://newrelic.com) via the [Deployment
-API](http://newrelic.github.com/newrelic_api/NewRelicApi/Deployment.html).
+This module contains two methods of notifying New Relic of a successful
+application deployment:
 
-Requirements
-------------
+* A Puppet type called `newrelic_notify` that will send deployment
+  notifications to New Relic.
+
+* A Puppet report processor for sending deployment events to
+  [NewRelic](http://newrelic.com) via the [Deployment API](http://newrelic.github.com/newrelic_api/NewRelicApi/Deployment.html).
+
+## Requirements
 
 * Puppet 2.6.5 or later
 * `newrelic_api` gem
@@ -17,35 +19,57 @@ Requirements
 Account settings (upper right corner of the New Relic site), and then
 click on Integrations => Data Sharing. Select API access, and enable it.
 
-Installation & Usage
---------------------
+## Installation
 
 1.  Install the `newrelic_api` gem on your Puppet master
 
         $ sudo gem install newrelic_api
 
 2.  Install puppet-newrelic as a module in your Puppet master's module
-    path. To install the NewRelic RPM gem on the hosts with deployed
-    applications declare the `newrelic` class.
+    path.
 
-        class { 'newrelic':
-          enabled => 'true',
+## Usage
+
+To install the NewRelic RPM and API gems on the hosts with deployed
+applications declare the `newrelic` class.
+
+    class { 'newrelic':
+      enabled => 'true',
+    }
+
+### Type and Provider
+
+1.  To use the `newrelic_notify` type enable pluginsync
+    on your master and clients in `puppet.conf`
+
+        [master]
+        pluginsync = true
+        [agent]
+        pluginsync = true
+
+2.  Run the Puppet client and sync the report as a plugin
+
+3.  You can then use the type and provider like so:
+
+        newrelic_notify { '123456':
+          ensure      => present,
+          api_key     => 'abc123',
+          description => 'Notify New Relic that Application Bob was deployed.',
+          revision    => 'This is rev 1.0.1', 
+          user        => 'Puppet',
         }
 
-    To install the NewRelic API gem on the Puppet master declare the
-    `newrelic::api` class.
+    The `description`, `revision`, and `user` parameters are optional. 
 
-        class { 'newrelic::api':
-          enabled => 'true',
-        }   
+### Report processor
 
-3.  Update the `api_key` variable in the `newrelic.yaml` file with
+1.  To use the New Relic report processor update the `api_key` variable in the `newrelic.yaml` file with
     your New Relic API key.
 
         ---
         :api_key: 'abc123'
 
-4.  Add a list of your hosts to newrelic.yaml and match each host to the
+2.  Add a list of your hosts to newrelic.yaml and match each host to the
     New Relic application deployed on it. Currently this is ugly and
     only supports one application per host. Anyone with ideas on how to do
     it better is welcomed. :)
@@ -60,9 +84,9 @@ Installation & Usage
     example: https://rpm.newrelic.com/accounts/17710/applications/56658.
     Where `56658` is the Application ID key. 
 
-5.  Copy `newrelic.yaml` to `/etc/puppet`.
+3.  Copy `newrelic.yaml` to `/etc/puppet`.
 
-6.  Enable pluginsync and reports on your master and clients in `puppet.conf`
+4.  Enable pluginsync and reports on your master and clients in `puppet.conf`
 
         [master]
         report = true
@@ -72,7 +96,7 @@ Installation & Usage
         report = true
         pluginsync = true
 
-7.  Run the Puppet client and sync the report as a plugin
+5.  Run the Puppet client and sync the report as a plugin
 
 Author
 ------

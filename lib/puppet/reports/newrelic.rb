@@ -1,3 +1,4 @@
+require 'puppet'
 require 'yaml'
 require 'newrelic_api'
 
