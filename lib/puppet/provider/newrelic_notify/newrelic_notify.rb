@@ -25,15 +25,15 @@ Puppet::Type.type(:newrelic_notify).provide(:newrelic_notify) do
   confine :true => Puppet.features.newrelic?
 
   def create
+    return true
+  end
+
+  def exists?
     begin
       notify(resource)
     rescue Exception => e
       raise Puppet::Error, "Could not notify New Relic application #{resource[:name]}, failed with #{e}"
     end
-  end
-
-  def exists?
-    return true
   end
 
   def destroy

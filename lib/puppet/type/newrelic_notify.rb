@@ -27,12 +27,12 @@ Puppet::Type.newtype(:newrelic_notify) do
   newparam(:description) do
     desc "The description of the deployment. Optional."
 
-    defaultto "Application deployed."
+    defaultto "Application deployed via Puppet."
   end
 
   newparam(:revision) do
     desc "The revision deployed. Optional."
 
-    defaultto "Revision not specified."
+    defaultto "No revision"
   end
 end

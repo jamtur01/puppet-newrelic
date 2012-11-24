@@ -19,8 +19,7 @@ Puppet::Reports.register_report(:newrelic) do
   def process
     app_id = CONFIG[:hosts].detect {|h| h["host"] == self.host }['key'] rescue nil
     if app_id == nil
-      Puppet.info("Unable to match #{self.host} to a specific NewRelic Application ID - check newrelic.yaml")
-      exit
+      Puppet.err("Unable to match #{self.host} to a specific NewRelic Application ID - check newrelic.yaml")
     elsif self.kind == 'apply'
       NewRelicApi.api_key = CONFIG[:api_key]
       NewRelicApi::Deployment.create :app_id => "#{app_id}", :description => "Puppet run #{self.configuration_version} on #{self.host} at #{self.time}", :user => "Puppet"
