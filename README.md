@@ -101,13 +101,13 @@ applications declare the `newrelic` class.
 Author
 ------
 
-James Turnbull <james@lovedthanlost.net>
+James Turnbull <james@puppetlabs.com>
 
 License
 -------
 
-    Author:: James Turnbull (<james@lovedthanlost.net>)
-    Copyright:: Copyright (c) 2012 James Turnbull
+    Author:: James Turnbull (<james@puppetlabs.com>)
+    Copyright:: Copyright (c) 2012 James Turnbull & Puppet Labs
     License:: Apache License, Version 2.0
 
     Licensed under the Apache License, Version 2.0 (the "License");

@@ -1,5 +1,5 @@
 name 'puppet-newrelic'
-version '0.0.2'
+version '0.0.3'
 license 'Apache 2.0'
-summary 'Report processor that sends Puppet deployment events to New Relic'
-project_page 'https://github.com/jamtur01/puppet-newrelic'
+summary 'Puppet integration with the New Relic Deployment API'
+project_page 'https://github.com/puppetlabs/puppet-newrelic'
