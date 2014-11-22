@@ -20,7 +20,7 @@ require 'newrelic_api' if Puppet.features.newrelic?
 
 Puppet::Type.type(:newrelic_notify).provide(:newrelic_notify) do
 
-  desc "Send New Relic deploymnet notifications."
+  desc "Send New Relic deployment notifications."
 
   confine :true => Puppet.features.newrelic?
 
